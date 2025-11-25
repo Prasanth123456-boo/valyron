@@ -21,7 +21,7 @@ const mockSalesOrders = [
 ];
 
 export default function SalesOrderWithTabs() {
-  const [activeTab, setActiveTab] = useState("create");
+  const [activeTab, setActiveTab] = useState("all");
   const today = format(new Date(), "yyyy-MM-dd");
   const deliveryDate = format(new Date(Date.now() + 21 * 24 * 60 * 60 * 1000), "yyyy-MM-dd");
 
@@ -37,32 +37,19 @@ export default function SalesOrderWithTabs() {
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full max-w-md grid-cols-2 mb-8">
-            <TabsTrigger value="create" className="flex items-center gap-2">
-              <Plus className="h-4 w-4" />
-              Create Order
-            </TabsTrigger>
             <TabsTrigger value="all" className="flex items-center gap-2">
               <FileText className="h-4 w-4" />
               All Orders ({mockSalesOrders.length})
+            </TabsTrigger>
+            <TabsTrigger value="create" className="flex items-center gap-2">
+              <Plus className="h-4 w-4" />
+              Create Order
             </TabsTrigger>
           </TabsList>
 
           {/* ========== CREATE SALES ORDER TAB ========== */}
           <TabsContent value="create" className="mt-0">
             <Card className="shadow-2xl border-0 rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-indigo-600 to-purple-700 text-white">
-                <div className="flex justify-between items-start">
-                  <div className="flex items-center gap-4">
-                    <Package className="w-12 h-12" />
-                    <div>
-                      <h1 className="text-4xl font-bold">SALES ORDER</h1>
-                      <p className="text-indigo-100 text-lg">Create New Order</p>
-                    </div>
-                  </div>
-                  <Badge className="text-lg px-6 py-2 bg-white/20">DRAFT</Badge>
-                </div>
-              </CardHeader>
-
               <CardContent className="p-8 space-y-8">
                 {/* Your full original form goes here - keeping it clean */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -194,8 +181,8 @@ export default function SalesOrderWithTabs() {
                           <TableCell>
                             <Badge variant={
                               order.status === "Delivered" ? "default" :
-                              order.status === "Confirmed" ? "secondary" :
-                              order.status === "In Progress" ? "outline" : "destructive"
+                                order.status === "Confirmed" ? "secondary" :
+                                  order.status === "In Progress" ? "outline" : "destructive"
                             }>
                               {order.status}
                             </Badge>
