@@ -27,122 +27,130 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Users, Plus, Eye, Download, Send, MapPin, Phone, Mail, Building } from "lucide-react";
+import { Truck, Plus, Eye, Download, Send, Building2, Globe, Phone, Mail, CreditCard } from "lucide-react";
 import { format } from "date-fns";
 
-// Mock Customers Data
-const mockCustomers = [
-  { 
-    id: "CUST-2025-0001", 
-    name: "Acme Corporation Inc.", 
-    email: "billing@acme.com", 
-    phone: "+1 (555) 123-4567", 
-    country: "United States", 
-    status: "Active", 
-    createdDate: "2025-01-15",
-    totalSpent: "$124,500.00"
+// Mock Suppliers Data
+const mockSuppliers = [
+  {
+    id: "SUP-2025-0001",
+    name: "Tech Distributors Inc.",
+    email: "procurement@techdist.com",
+    phone: "+1 (415) 555-0198",
+    country: "United States",
+    currency: "USD",
+    status: "Active",
+    createdDate: "2025-01-10",
+    totalPurchased: "$428,500.00",
   },
-  { 
-    id: "CUST-2025-0002", 
-    name: "TechCorp Ltd", 
-    email: "accounts@techcorp.in", 
-    phone: "+91 98765 43210", 
-    country: "India", 
-    status: "Active", 
-    createdDate: "2025-02-20",
-    totalSpent: "₹8,75,000.00"
+  {
+    id: "SUP-2025-0002",
+    name: "Indian Hardware Ltd",
+    email: "accounts@indianhardware.in",
+    phone: "+91 98470 12345",
+    country: "India",
+    currency: "INR",
+    status: "Active",
+    createdDate: "2025-02-15",
+    totalPurchased: "₹68,75,000.00",
   },
-  { 
-    id: "CUST-2025-0003", 
-    name: "Global Solutions GmbH", 
-    email: "finance@globalsol.de", 
-    phone: "+49 30 12345678", 
-    country: "Germany", 
-    status: "Inactive", 
-    createdDate: "2025-03-10",
-    totalSpent: "€45,200.00"
+  {
+    id: "SUP-2025-0003",
+    name: "EuroTech Supplies GmbH",
+    email: "einkauf@eurotech.de",
+    phone: "+49 89 12345670",
+    country: "Germany",
+    currency: "EUR",
+    status: "Active",
+    createdDate: "2025-03-05",
+    totalPurchased: "€198,400.00",
   },
-  { 
-    id: "CUST-2025-0004", 
-    name: "EuroTech Partners", 
-    email: "sales@eurotech.fr", 
-    phone: "+33 1 23 45 67 89", 
-    country: "France", 
-    status: "Active", 
-    createdDate: "2025-04-05",
-    totalSpent: "€32,100.00"
+  {
+    id: "SUP-2025-0004",
+    name: "Global Components Asia",
+    email: "sales@globalcomp.asia",
+    phone: "+65 6789 0123",
+    country: "Singapore",
+    currency: "SGD",
+    status: "On Hold",
+    createdDate: "2025-04-18",
+    totalPurchased: "S$87,200.00",
   },
 ];
 
-export default function CustomersWithTabs() {
+export default function SuppliersWithTabs() {
   const [activeTab, setActiveTab] = useState("all");
-  const [country, setCountry] = useState("India");
+  const [preferredCurrency, setPreferredCurrency] = useState("USD");
 
   return (
     <div className="min-h-screen bg-gray-50 py-6">
       <div className="max-w-7xl mx-auto px-4">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Customers</h1>
-          <p className="text-gray-600 mt-1">Manage your customer database and relationships</p>
+          <h1 className="text-3xl font-bold text-gray-900">Suppliers</h1>
+          <p className="text-gray-600 mt-1">
+            Manage your suppliers, vendors, and procurement partners worldwide
+          </p>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full max-w-md grid-cols-2 mb-8">
             <TabsTrigger value="all" className="flex items-center gap-2">
-              <Users className="h-4 w-4" />
-              All Customers ({mockCustomers.length})
+              <Truck className="h-4 w-4" />
+              All Suppliers ({mockSuppliers.length})
             </TabsTrigger>
             <TabsTrigger value="create" className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
-              Add Customer
+              Add Supplier
             </TabsTrigger>
           </TabsList>
 
-          {/* ========== ADD CUSTOMER TAB ========== */}
+          {/* ========== ADD SUPPLIER TAB ========== */}
           <TabsContent value="create" className="mt-0">
             <Card className="shadow-xl border-0 rounded-2xl overflow-hidden">
               <CardContent className="p-8 space-y-8">
+                {/* Company & Address */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                      <Building className="h-5 w-5" />
-                      Company Details
+                      <Building2 className="h-5 w-5" />
+                      Supplier Details
                     </h3>
                     <div className="space-y-4">
                       <div>
-                        <Label>Customer Name *</Label>
-                        <Input placeholder="e.g., Acme Corporation Inc." className="font-semibold text-lg" />
+                        <Label>Supplier Name *</Label>
+                        <Input placeholder="e.g., Tech Distributors Inc." className="font-semibold text-lg" />
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <Label>Customer ID</Label>
-                          <Input placeholder="Auto-generated" readOnly />
+                          <Label>Supplier ID</Label>
+                          <Input placeholder="Auto-generated" readOnly className="bg-gray-100" />
                         </div>
                         <div>
-                          <Label>Customer Type</Label>
-                          <Select defaultValue="corporate">
+                          <Label>Supplier Type</Label>
+                          <Select defaultValue="manufacturer">
                             <SelectTrigger>
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="corporate">Corporate</SelectItem>
-                              <SelectItem value="individual">Individual</SelectItem>
-                              <SelectItem value="government">Government</SelectItem>
+                              <SelectItem value="manufacturer">Manufacturer</SelectItem>
+                              <SelectItem value="distributor">Distributor</SelectItem>
+                              <SelectItem value="wholesaler">Wholesaler</SelectItem>
+                              <SelectItem value="service">Service Provider</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
                       </div>
                       <div>
-                        <Label>Industry</Label>
-                        <Select defaultValue="technology">
+                        <Label>Category</Label>
+                        <Select defaultValue="electronics">
                           <SelectTrigger>
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="technology">Technology</SelectItem>
-                            <SelectItem value="manufacturing">Manufacturing</SelectItem>
-                            <SelectItem value="retail">Retail</SelectItem>
-                            <SelectItem value="healthcare">Healthcare</SelectItem>
+                            <SelectItem value="electronics">Electronics & Hardware</SelectItem>
+                            <SelectItem value="software">Software & Licenses</SelectItem>
+                            <SelectItem value="logistics">Logistics & Shipping</SelectItem>
+                            <SelectItem value="office">Office Supplies</SelectItem>
                             <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>
@@ -152,39 +160,27 @@ export default function CustomersWithTabs() {
 
                   <div>
                     <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                      <MapPin className="h-5 w-5" />
-                      Billing Address
+                      <Globe className="h-5 w-5" />
+                      Address & Location
                     </h3>
                     <div className="space-y-4">
-                      <div>
-                        <Label>Address Line 1 *</Label>
-                        <Input placeholder="Street address" />
-                      </div>
-                      <div>
-                        <Label>Address Line 2</Label>
-                        <Input placeholder="Suite, floor, etc." />
-                      </div>
+                      <Textarea placeholder="Street address, building, floor..." rows={3} />
                       <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <Label>City *</Label>
-                          <Input placeholder="City" />
-                        </div>
-                        <div>
-                          <Label>Postal Code *</Label>
-                          <Input placeholder="ZIP / PIN" />
-                        </div>
+                        <Input placeholder="City *" />
+                        <Input placeholder="Postal Code / ZIP *" />
                       </div>
                       <div>
                         <Label>Country *</Label>
-                        <Select value={country} onValueChange={setCountry}>
+                        <Select defaultValue="United States">
                           <SelectTrigger>
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="India">India</SelectItem>
                             <SelectItem value="United States">United States</SelectItem>
+                            <SelectItem value="India">India</SelectItem>
                             <SelectItem value="Germany">Germany</SelectItem>
-                            <SelectItem value="France">France</SelectItem>
+                            <SelectItem value="Singapore">Singapore</SelectItem>
+                            <SelectItem value="China">China</SelectItem>
                             <SelectItem value="United Kingdom">United Kingdom</SelectItem>
                           </SelectContent>
                         </Select>
@@ -195,6 +191,7 @@ export default function CustomersWithTabs() {
 
                 <Separator />
 
+                {/* Contact & Banking */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
@@ -203,33 +200,44 @@ export default function CustomersWithTabs() {
                     </h3>
                     <div className="space-y-4">
                       <div>
-                        <Label>Email *</Label>
-                        <Input type="email" placeholder="billing@company.com" />
+                        <Label>Email (Procurement) *</Label>
+                        <Input type="email" placeholder="procurement@supplier.com" />
                       </div>
                       <div>
                         <Label>Phone *</Label>
-                        <Input placeholder="+1 (555) 123-4567" />
+                        <Input placeholder="+1 (415) 555-0198" />
                       </div>
                       <div>
                         <Label>Website</Label>
-                        <Input placeholder="https://company.com" type="url" />
+                        <Input placeholder="https://supplier.com" type="url" />
                       </div>
                       <div>
                         <Label>GSTIN / VAT / Tax ID</Label>
-                        <Input placeholder="e.g., 32AAGCV1234A1Z5" />
+                        <Input placeholder="e.g., 98-7654321" />
                       </div>
                     </div>
                   </div>
 
                   <div>
                     <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                      <Phone className="h-5 w-5" />
+                      <CreditCard className="h-5 w-5" />
                       Payment & Terms
                     </h3>
                     <div className="space-y-4">
                       <div>
-                        <Label>Credit Limit</Label>
-                        <Input type="number" placeholder="0" />
+                        <Label>Preferred Currency</Label>
+                        <Select value={preferredCurrency} onValueChange={setPreferredCurrency}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="USD">USD - US Dollar</SelectItem>
+                            <SelectItem value="INR">INR - Indian Rupee</SelectItem>
+                            <SelectItem value="EUR">EUR - Euro</SelectItem>
+                            <SelectItem value="SGD">SGD - Singapore Dollar</SelectItem>
+                            <SelectItem value="GBP">GBP - British Pound</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                       <div>
                         <Label>Payment Terms</Label>
@@ -238,26 +246,16 @@ export default function CustomersWithTabs() {
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
+                            <SelectItem value="prepaid">Prepaid</SelectItem>
                             <SelectItem value="net15">Net 15 Days</SelectItem>
                             <SelectItem value="net30">Net 30 Days</SelectItem>
                             <SelectItem value="net60">Net 60 Days</SelectItem>
-                            <SelectItem value="cod">Cash on Delivery</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
                       <div>
-                        <Label>Preferred Currency</Label>
-                        <Select defaultValue="USD">
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="USD">USD - US Dollar</SelectItem>
-                            <SelectItem value="INR">INR - Indian Rupee</SelectItem>
-                            <SelectItem value="EUR">EUR - Euro</SelectItem>
-                            <SelectItem value="GBP">GBP - British Pound</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <Label>Lead Time (days)</Label>
+                        <Input type="number" placeholder="7" />
                       </div>
                       <div>
                         <Label>Status</Label>
@@ -267,8 +265,8 @@ export default function CustomersWithTabs() {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="active">Active</SelectItem>
+                            <SelectItem value="on-hold">On Hold</SelectItem>
                             <SelectItem value="inactive">Inactive</SelectItem>
-                            <SelectItem value="suspended">Suspended</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -279,11 +277,11 @@ export default function CustomersWithTabs() {
                 <Separator />
 
                 <div>
-                  <Label>Notes</Label>
+                  <Label>Notes / Special Instructions</Label>
                   <Textarea
                     rows={4}
-                    placeholder="Any additional notes about this customer..."
                     className="mt-2"
+                    placeholder="e.g., Requires 3-day advance notice for large orders. Preferred Incoterm: FOB Shanghai."
                   />
                 </div>
 
@@ -291,52 +289,66 @@ export default function CustomersWithTabs() {
                   <Button variant="outline">Cancel</Button>
                   <Button>
                     <Plus className="h-4 w-4 mr-2" />
-                    Add Customer
+                    Add Supplier
                   </Button>
                 </div>
               </CardContent>
             </Card>
           </TabsContent>
 
-          {/* ========== ALL CUSTOMERS TAB ========== */}
+          {/* ========== ALL SUPPLIERS TAB ========== */}
           <TabsContent value="all" className="mt-0">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl">All Customers</CardTitle>
-                <p className="text-gray-600">View and manage your customer records</p>
+                <CardTitle className="text-2xl">All Suppliers</CardTitle>
+                <p className="text-gray-600">View and manage your procurement partners</p>
               </CardHeader>
               <CardContent>
                 <div className="rounded-lg border overflow-hidden">
                   <Table>
                     <TableHeader>
                       <TableRow className="bg-gray-50">
-                        <TableHead>Customer ID</TableHead>
-                        <TableHead>Name</TableHead>
+                        <TableHead>Supplier ID</TableHead>
+                        <TableHead>Company Name</TableHead>
                         <TableHead>Contact</TableHead>
                         <TableHead>Country</TableHead>
-                        <TableHead className="text-right">Total Spent</TableHead>
+                        <TableHead>Currency</TableHead>
+                        <TableHead className="text-right">Total Purchased</TableHead>
                         <TableHead>Status</TableHead>
                         <TableHead className="text-center">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {mockCustomers.map((cust) => (
-                        <TableRow key={cust.id} className="hover:bg-gray-50 transition">
-                          <TableCell className="font-medium">{cust.id}</TableCell>
-                          <TableCell className="font-semibold">{cust.name}</TableCell>
+                      {mockSuppliers.map((sup) => (
+                        <TableRow key={sup.id} className="hover:bg-gray-50 transition">
+                          <TableCell className="font-medium">{sup.id}</TableCell>
+                          <TableCell className="font-semibold">{sup.name}</TableCell>
                           <TableCell>
                             <div className="space-y-1">
-                              <p className="text-sm">{cust.email}</p>
-                              <p className="text-xs text-gray-500">{cust.phone}</p>
+                              <p className="text-sm">{sup.email}</p>
+                              <p className="text-xs text-gray-500">{sup.phone}</p>
                             </div>
                           </TableCell>
                           <TableCell>
-                            <Badge variant="outline">{cust.country}</Badge>
+                            <Badge variant="outline" className="text-xs">
+                              {sup.country}
+                            </Badge>
                           </TableCell>
-                          <TableCell className="text-right font-semibold">{cust.totalSpent}</TableCell>
                           <TableCell>
-                            <Badge variant={cust.status === "Active" ? "default" : "secondary"}>
-                              {cust.status}
+                            <Badge variant="secondary">{sup.currency}</Badge>
+                          </TableCell>
+                          <TableCell className="text-right font-semibold">{sup.totalPurchased}</TableCell>
+                          <TableCell>
+                            <Badge
+                              variant={
+                                sup.status === "Active"
+                                  ? "default"
+                                  : sup.status === "On Hold"
+                                  ? "secondary"
+                                  : "outline"
+                              }
+                            >
+                              {sup.status}
                             </Badge>
                           </TableCell>
                           <TableCell>
@@ -359,7 +371,7 @@ export default function CustomersWithTabs() {
                 </div>
 
                 <div className="mt-6 flex justify-between items-center">
-                  <p className="text-sm text-gray-600">Showing 4 of 156 customers</p>
+                  <p className="text-sm text-gray-600">Showing 4 of 89 suppliers</p>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm">Export CSV</Button>
                     <Button variant="outline" size="sm">Load More</Button>
