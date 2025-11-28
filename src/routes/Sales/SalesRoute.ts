@@ -12,19 +12,19 @@ export interface AppRoute {
 
 const salesRoutes: AppRoute[] = [
   {
-    path: "/sales-invoice",
+    path: "/valyron/sales-invoice",
     component: SalesInvoice,
   },
    {
-    path: "/sales-return",
+    path: "/valyron/sales-return",
     component: SalesReturn,
   },
    {
-    path: "/sales-order",
+    path: "/valyron/sales-order",
     component: SalesOrder,
   },
    {
-    path: "/sales-estimate",
+    path: "/valyron/sales-estimate",
     component: SalesEstimate,
   },
 ];

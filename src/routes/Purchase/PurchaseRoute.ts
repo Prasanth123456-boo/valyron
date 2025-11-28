@@ -11,15 +11,15 @@ export interface AppRoute {
 
 const purchaseRoutes: AppRoute[] = [
   {
-    path: "/purchase-invoice",
+    path: "/valyron/purchase-invoice",
     component: PurchaseInvoiceWithTabs,
   },
     {
-    path: "/purchase-order",
+    path: "/valyron/purchase-order",
     component: PurchaseOrderWithTabs,
   },
     {
-    path: "/purchase-return",
+    path: "/valyron/purchase-return",
     component: PurchaseReturnWithTabs,
   }
  

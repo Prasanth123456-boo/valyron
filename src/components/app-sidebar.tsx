@@ -48,38 +48,38 @@ export function AppSidebar() {
     {
       title: "Dashboard",
       icon: Home,
-      route: "/dashboard",
+      route: "/valyron/",
     },
     {
       title: "Sales",
       icon: DollarSign,
       items: [
-        { name: "Sales Invoice", icon: Receipt, route: "/sales-invoice" },
-        { name: "Sales Order", icon: ShoppingCart, route: "/sales-order" },
-        { name: "Estimate / Quotation", icon: FileText, route: "/sales-estimate" },
-        { name: "Sales Return", icon: ArrowLeftRight, route: "/sales-return" },
+        { name: "Sales Invoice", icon: Receipt, route: "/valyron/sales-invoice" },
+        { name: "Sales Order", icon: ShoppingCart, route: "/valyron/sales-order" },
+        { name: "Estimate / Quotation", icon: FileText, route: "/valyron/sales-estimate" },
+        { name: "Sales Return", icon: ArrowLeftRight, route: "/valyron/sales-return" },
       ],
     },
     {
       title: "Purchase",
       icon: Truck,
       items: [
-        { name: "Purchase Invoice", icon: Receipt, route: "/purchase-invoice" },
-        { name: "Purchase Order", icon: ShoppingCart, route: "/purchase-order" },
-        { name: "Purchase Return", icon: ArrowLeftRight, route: "/purchase-return" },
+        { name: "Purchase Invoice", icon: Receipt, route: "/valyron/purchase-invoice" },
+        { name: "Purchase Order", icon: ShoppingCart, route: "/valyron/purchase-order" },
+        { name: "Purchase Return", icon: ArrowLeftRight, route: "/valyron/purchase-return" },
       ],
     },
     {
       title: "Contacts",
       icon: Users,
       items: [
-        { name: "Customers", icon: Building2, route: "/customers" },
-        { name: "Suppliers", icon: Truck, route: "/suppliers" },
+        { name: "Customers", icon: Building2, route: "/valyron/customers" },
+        { name: "Suppliers", icon: Truck, route: "/valyron/suppliers" },
       ],
     },
-    { title: "Inventory", icon: Package, route: "/inventory" },
-    { title: "Reports", icon: BarChart3, route: "/reports" },
-    { title: "Settings", icon: Settings, route: "/settings" },
+    { title: "Inventory", icon: Package, route: "/valyron/inventory" },
+    { title: "Reports", icon: BarChart3, route: "/valyron/reports" },
+    { title: "Settings", icon: Settings, route: "/valyron/settings" },
   ];
 
   const isActive = (route: string) => location.pathname === route;

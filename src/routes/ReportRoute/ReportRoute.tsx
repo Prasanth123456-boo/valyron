@@ -8,7 +8,7 @@ export interface AppRoute {
 
 const reportRoutes: AppRoute[] = [
     {
-        path: "/reports",
+        path: "/valyron/reports",
         component: ReportsDashboard,
     },
    

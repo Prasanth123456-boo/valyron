@@ -9,7 +9,7 @@ export interface AppRoute {
 
 const dasheRoutes: AppRoute[] = [
   {
-    path: "/dashboard",
+    path: "/",
     component: ERPClassyDashboard,
   }
  

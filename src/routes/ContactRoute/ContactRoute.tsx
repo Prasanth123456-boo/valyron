@@ -9,11 +9,11 @@ export interface AppRoute {
 
 const contactRoutes: AppRoute[] = [
     {
-        path: "/customers",
+        path: "/valyron/customers",
         component: CustomersWithTabs,
     },
     {
-        path: "/suppliers",
+        path: "/valyron/suppliers",
         component: SuppliersWithTabs,
     }
 
