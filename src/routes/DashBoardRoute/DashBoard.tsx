@@ -9,7 +9,7 @@ export interface AppRoute {
 
 const dasheRoutes: AppRoute[] = [
   {
-    path: "/",
+    path: "/valyron/",
     component: ERPClassyDashboard,
   }
  
